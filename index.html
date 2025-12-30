@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Simulatoren-AquaTeck</title>
+    <link rel="stylesheet" href="style.css"/>
+  </head>
+  <body>
+
+    <div class="login-box">
+      <h1>Simulatoren-AquaTeck</h1>
+      <p>Beveiligde toegang</p>
+
+      <input type="password" id="codeInput" placeholder="Toegangscode">
+      <button onclick="login()">Inloggen</button>
+
+      <div id="error" class="error"></div>
+    </div>
+
+    <script>
+      // 👉 Eerste keer: stel hier je code in
+      if (!localStorage.getItem("ACCESS_CODE")) {
+        localStorage.setItem("ACCESS_CODE", "Teck Simulatoren"); // wijzig deze code
+      }
+
+      function login() {
+        const input = document.getElementById("codeInput").value;
+        const correctCode = localStorage.getItem("ACCESS_CODE");
+
+        if (input === correctCode) {
+          localStorage.setItem("authenticated", "true");
+          window.location.href = "dashboard.html";
+        } else {
+          document.getElementById("error").innerText = "Foute toegangscode";
+        }
+      }
+    </script>
+</body>
+</html>
